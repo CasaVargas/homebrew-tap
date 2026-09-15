@@ -22,6 +22,9 @@ jobs:
           mkdir -p "$(dirname "$TAP_DIR")"
           rm -rf "$TAP_DIR"
           ln -s "$GITHUB_WORKSPACE" "$TAP_DIR"
+          # Homebrew 7 refuses to load casks from untrusted third-party taps.
+          # The runner's Homebrew may predate `brew trust`, hence the guard.
+          if brew help trust >/dev/null 2>&1; then brew trust --tap casavargas/tap; fi
 
       - name: brew style
         run: brew style Casks/beltr.rb

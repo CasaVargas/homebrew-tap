@@ -5,14 +5,12 @@ Homebrew casks for [Beltr](https://beltr.app/), karaoke from the songs you alrea
 ## Install
 
 ```bash
-brew tap CasaVargas/tap && brew install --cask beltr
+brew trust --tap casavargas/tap && brew tap CasaVargas/tap && brew install --cask beltr
 ```
 
-Or in one step:
-
-```bash
-brew install --cask casavargas/tap/beltr
-```
+Homebrew 7 refuses to load casks from a tap you haven't trusted, which shows up as
+"Invalid cask … Refusing to load cask casavargas/tap/beltr from untrusted tap". The
+`brew trust` step handles that once per machine.
 
 Requires an Apple Silicon Mac (M1 or newer). The app is signed and notarized by Apple.
 
