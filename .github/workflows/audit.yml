@@ -30,4 +30,8 @@ jobs:
         run: brew style Casks/beltr.rb
 
       - name: brew audit
+        # --online calls the GitHub API; unauthenticated, the shared runner IPs
+        # hit the rate limit.
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
         run: brew audit --cask --online casavargas/tap/beltr
