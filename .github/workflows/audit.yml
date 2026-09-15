@@ -1,0 +1,30 @@
+name: Audit casks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # brew audit only accepts casks by tap name, so the checkout has to be
+      # installed as the CasaVargas/tap tap. Symlinking the checkout in (rather
+      # than `brew tap`, which clones the default branch) audits the PR's files.
+      - name: Tap the checkout
+        run: |
+          TAP_DIR="$(brew --repository)/Library/Taps/casavargas/homebrew-tap"
+          mkdir -p "$(dirname "$TAP_DIR")"
+          rm -rf "$TAP_DIR"
+          ln -s "$GITHUB_WORKSPACE" "$TAP_DIR"
+
+      - name: brew style
+        run: brew style Casks/beltr.rb
+
+      - name: brew audit
+        run: brew audit --cask --online casavargas/tap/beltr
