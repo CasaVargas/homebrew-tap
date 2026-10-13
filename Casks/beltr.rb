@@ -1,6 +1,6 @@
 cask "beltr" do
-  version "1.70.0"
-  sha256 "3ac15b35fe8016f78b842bd5204aa7a4cfa64b3160261003b7fc9aef17dfe962"
+  version "1.70.1"
+  sha256 "290048786b5390467e1205aff87a1b3d4dde605d58156c812ab9af4420fbfc2c"
 
   url "https://github.com/CasaVargas/beltr-releases/releases/download/v#{version}/Beltr-#{version}-arm64.dmg"
   name "Beltr"
