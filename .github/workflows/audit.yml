@@ -27,11 +27,14 @@ jobs:
           if brew help trust >/dev/null 2>&1; then brew trust --tap casavargas/tap; fi
 
       - name: brew style
-        run: brew style Casks/beltr.rb
+        run: brew style Casks
 
       - name: brew audit
         # --online calls the GitHub API; unauthenticated, the shared runner IPs
         # hit the rate limit.
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
-        run: brew audit --cask --online casavargas/tap/beltr
+        run: |
+          for cask in Casks/*.rb; do
+            brew audit --cask --online "casavargas/tap/$(basename "$cask" .rb)"
+          done
