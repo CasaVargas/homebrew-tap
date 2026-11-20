@@ -1,6 +1,6 @@
 cask "nimbus" do
-  version "1.5.4"
-  sha256 "6da1e394f9d1901b8d31d81b07b0bcb92742380ac64bf434efe02fba988da304"
+  version "1.5.5"
+  sha256 "d8af2bdaaf2a8a291d4b7003f02fcb0ba92ec2d3e2e3d83ca2df5b04156b3fa6"
 
   url "https://github.com/CasaVargas/Nimbus/releases/download/v#{version}/Nimbus-#{version}.dmg"
   name "Nimbus"
